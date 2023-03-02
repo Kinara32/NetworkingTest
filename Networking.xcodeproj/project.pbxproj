@@ -18,6 +18,7 @@
 		F19D0DAB29AF812E00B5AA02 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D0DAA29AF812E00B5AA02 /* MainViewController.swift */; };
 		F19D0DAD29AF815E00B5AA02 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D0DAC29AF815E00B5AA02 /* CollectionViewCell.swift */; };
 		F19D0DAF29AF87B500B5AA02 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D0DAE29AF87B500B5AA02 /* NetworkManager.swift */; };
+		F19D0DB129B137CA00B5AA02 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D0DB029B137CA00B5AA02 /* DataProvider.swift */; };
 		F1BFC2FF29AB8F9A00F4DBEB /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFC2FE29AB8F9A00F4DBEB /* Course.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		F19D0DAA29AF812E00B5AA02 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F19D0DAC29AF815E00B5AA02 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		F19D0DAE29AF87B500B5AA02 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		F19D0DB029B137CA00B5AA02 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		F1BFC2FE29AB8F9A00F4DBEB /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 				A83C30202108401A00592AE4 /* AppDelegate.swift */,
 				F19D0DAA29AF812E00B5AA02 /* MainViewController.swift */,
 				F19D0DAE29AF87B500B5AA02 /* NetworkManager.swift */,
+				F19D0DB029B137CA00B5AA02 /* DataProvider.swift */,
 				F19D0DAC29AF815E00B5AA02 /* CollectionViewCell.swift */,
 				A806CF93210B4EA300574064 /* ImageViewController.swift */,
 				A8255C8321410AFA0074F6D0 /* CoursesViewController.swift */,
@@ -158,6 +161,7 @@
 			files = (
 				F1BFC2FF29AB8F9A00F4DBEB /* Course.swift in Sources */,
 				F19D0DAF29AF87B500B5AA02 /* NetworkManager.swift in Sources */,
+				F19D0DB129B137CA00B5AA02 /* DataProvider.swift in Sources */,
 				F19D0DAD29AF815E00B5AA02 /* CollectionViewCell.swift in Sources */,
 				A806CF94210B4EA300574064 /* ImageViewController.swift in Sources */,
 				A8255C80214103450074F6D0 /* WebViewController.swift in Sources */,
