@@ -13,8 +13,23 @@ class AlamofireNetwork {
     
     class func sendRequest(url: String) {
         guard let url = URL(string: url) else {return}
-        AF.request(url).responseJSON { response in
-            print(response)
+        AF.request(url).validate().responseJSON{ response in
+            
+            switch response.result {
+            case .success(let value):
+                print(value)
+            case .failure(let error):
+                print(error)
+            }
+//            guard let statusCode = response.response?.statusCode else {return}
+//            print(statusCode)
+//            if (200..<300).contains(statusCode) {
+//                let value = response.value
+//                print(value ?? "nil")
+//            } else {
+//                let error = response.error
+//                print(error ?? "error")
+//            }
         }
     }
 }
