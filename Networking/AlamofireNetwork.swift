@@ -11,13 +11,14 @@ import Alamofire
 
 class AlamofireNetwork {
     
-    class func sendRequest(url: String) {
+    class func sendRequest(url: String, completion: @escaping (_ courses: [Course])->()) {
         guard let url = URL(string: url) else {return}
         AF.request(url).validate().responseJSON{ response in
             
             switch response.result {
             case .success(let value):
-                print(value)
+                    guard let courseArr = Course.getArray(from: value) else {return}
+                    completion(courseArr)
             case .failure(let error):
                 print(error)
             }
