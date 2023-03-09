@@ -17,6 +17,8 @@ enum Actions: String, CaseIterable {
     case uploadImage = "Upload Image"
     case downloadFile = "Download File"
     case ourCorsesAlamofire = "Our courses Alamofire"
+    case responseData = "Response Data"
+    case responseString = "Response String"
 }
 
 private let reuseIdentifier = "Cell"
@@ -85,32 +87,44 @@ class MainViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let action = actions[indexPath.row]
         switch action {
-        case .downloadImage:
-            performSegue(withIdentifier: "ShowImage", sender: self)
-        case .get:
-            NetworkManager.getRequest(url: url)
-        case .post:
-            NetworkManager.postRequest(url: url)
-        case .ourCourses:
-            performSegue(withIdentifier: "OurCourses", sender: self)
-        case .uploadImage:
-            print("upload")
-        case .downloadFile:
-            showAlert()
-            dataProvider.startDownload()
-        case .ourCorsesAlamofire:
-            performSegue(withIdentifier: "OurCoursesAlamofire", sender: self)
+            case .downloadImage:
+                performSegue(withIdentifier: "ShowImage", sender: self)
+            case .get:
+                NetworkManager.getRequest(url: url)
+            case .post:
+                NetworkManager.postRequest(url: url)
+            case .ourCourses:
+                performSegue(withIdentifier: "OurCourses", sender: self)
+            case .uploadImage:
+                print("upload")
+            case .downloadFile:
+                showAlert()
+                dataProvider.startDownload()
+            case .ourCorsesAlamofire:
+                performSegue(withIdentifier: "OurCoursesAlamofire", sender: self)
+            case .responseData:
+                performSegue(withIdentifier: "ResponseData", sender: self)
+                AlamofireNetwork.responseData(url: "https://swiftbook.ru//wp-content/uploads/api/api_courses")
+            case .responseString:
+                AlamofireNetwork.responseString(url: "https://swiftbook.ru//wp-content/uploads/api/api_courses")
         }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let coursesVC = segue.destination as? CoursesViewController
+        let imageVC = segue.destination as? ImageViewController
+        
         switch segue.identifier {
-        case "OurCourses":
-            coursesVC?.fetchData()
-        case "OurCoursesAlamofire":
-            coursesVC?.fetchDataAlamofire()
-        default:
-            break
+            case "OurCourses":
+                coursesVC?.fetchData()
+            case "OurCoursesAlamofire":
+                coursesVC?.fetchDataAlamofire()
+            case "ResponseData":
+                imageVC?.alamofireFetchImage()
+            case "ShowImage":
+                imageVC?.fetchImage()
+            default:
+                break
         }
     }
 }
