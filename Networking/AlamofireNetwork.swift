@@ -8,8 +8,12 @@
 
 import Foundation
 import Alamofire
+import UIKit
 
 class AlamofireNetwork {
+    
+    static var onProgress: ((Double) -> ())?
+    static var completed: ((String) -> ())?
     
     class func sendRequest(url: String, completion: @escaping (_ courses: [Course])->()) {
         guard let url = URL(string: url) else {return}
@@ -47,10 +51,27 @@ class AlamofireNetwork {
         }
     }
     
-//    class responseAlamofireData(url: String) {
-//        AF.request(url).response{ response in
-//            guard let data = response.data, let string = String(data: data, encoding: .utf8) else {return}
-//        }
-//    }
+    class func responseAlamofireData(url: String) {
+        AF.request(url).response{ response in
+            guard let data = response.data, let string = String(data: data, encoding: .utf8) else {return}
+            print(string)
+        }
+    }
     
+    class func downloadImageWithProgress(url: String, completion: @escaping (_ image: UIImage) -> ()) {
+        guard let url = URL(string: url) else {return}
+        AF.request(url).validate().downloadProgress { progress in
+            print("totalUnitCount:\n", progress.totalUnitCount)
+            print("completedUnitCount:\n", progress.completedUnitCount)
+            print("fractionCompleted:\n", progress.fractionCompleted)
+            print("localizedDescription:\n", progress.localizedDescription!)
+            self.onProgress?(progress.fractionCompleted)
+            self.completed?(progress.localizedDescription)
+        }.response { response in
+            guard let data = response.data, let image = UIImage(data: data) else {return}
+            DispatchQueue.main.async {
+                completion(image)
+            }
+        }
+    }
 }
