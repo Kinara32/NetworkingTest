@@ -74,4 +74,50 @@ class AlamofireNetwork {
             }
         }
     }
+    
+    class func postRequest(url: String, completion: @escaping (_ courses: [Course])->()) {
+        guard let url = URL(string: url) else {return}
+        
+        let userData: [String: Any] = ["name": "Network Request",
+                                       "link": "https://swiftbook.ru/contents/our-first-applications/",
+                                       "imageUrl": "https://swiftbook.ru/wp-content/uploads/sites/2/2018/08/notifications-course-with-background.png"]
+//                                       "numberOfLessons": 18]
+//                                       "numberOfTests": 10]
+        AF.request(url, method: .post, parameters: userData).responseDecodable { (response: AFDataResponse<Course>) in
+            guard let statusCode = response.response?.statusCode else {return}
+            print(statusCode)
+            switch response.result {
+                case .success(let value):
+                    print(value)
+                    var courseArr = [Course]()
+                    courseArr.append(value)
+                    completion(courseArr)
+                case .failure(let error):
+                    print(error)
+            }
+        }
+    }
+    
+    class func putRequest(url: String, completion: @escaping (_ courses: [Course])->()) {
+        guard let url = URL(string: url) else {return}
+        
+        let userData: [String: Any] = ["name": "Network Request with Alamofire",
+                                       "link": "https://swiftbook.ru/contents/our-first-applications/",
+                                       "imageUrl": "https://swiftbook.ru/wp-content/uploads/sites/2/2018/08/notifications-course-with-background.png"]
+//                                       "numberOfLessons": 18]
+//                                       "numberOfTests": 10]
+        AF.request(url, method: .put, parameters: userData).responseDecodable { (response: AFDataResponse<Course>) in
+            guard let statusCode = response.response?.statusCode else {return}
+            print(statusCode)
+            switch response.result {
+                case .success(let value):
+                    print(value)
+                    var courseArr = [Course]()
+                    courseArr.append(value)
+                    completion(courseArr)
+                case .failure(let error):
+                    print(error)
+            }
+        }
+    }
 }
